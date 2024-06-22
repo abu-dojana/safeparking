@@ -9,149 +9,151 @@
 <body>
     <div class="signup-page">
         <img src="images/carDrive.jpg" alt="Background" class="background-image">
-        <div class="form-container" id="step1">
-            <p class="signup">Signup</p>
-            <p class="step-title">Personal Info</p> <!-- Added step title for the first step -->
+        <form id="signupForm" action="process_signup.php" method="post" enctype="multipart/form-data">
+            <div class="form-container" id="step1">
+                <p class="signup">Signup</p>
+                <p class="step-title">Personal Info</p>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="name" for="name">Name</label>
-                    <input type="text" id="name" class="input-field" placeholder="Enter your name">
-                </div>
-                <div class="form-group">
-                    <label class="dob" for="dob">Date of Birth</label>
-                    <input type="date" id="dob" class="input-field" placeholder="Enter your date of birth">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="gender">Gender</label>
-                <div class="radio-group">
-                    <input type="radio" id="male" name="gender" value="male">
-                    <label for="male">Male</label>
-                    <input type="radio" id="female" name="gender" value="female">
-                    <label for="female">Female</label>
-                    <input type="radio" id="other" name="gender" value="other">
-                    <label for="other">Other</label>
-                </div><p><br></p>
-            </div>
-
-            <div class="form-group">
-                <label class="licence" for="licence">Driving Licence No</label>
-                <input type="text" id="licence" class="input-field" placeholder="Enter your driving licence no">
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="email" for="email">Email</label>
-                    <input type="email" id="email" class="input-field" placeholder="Enter your email">
-                </div>
-                <div class="form-group">
-                    <label class="phone" for="phone">Phone</label>
-                    <input type="text" id="phone" class="input-field" placeholder="Enter your phone number">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="mobile" for="mobile">Mobile</label>
-                <input type="text" id="mobile" class="input-field" placeholder="Enter your mobile number">
-            </div>
-
-            <div class="form-group">
-                <label class="address" for="address">Home Address</label>
-                <textarea id="address" class="input-field" rows="4" placeholder="Enter your home address"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label class="nid" for="nid">NID Info</label>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="nid-no">NID No</label>
-                    <input type="text" id="nid" class="input-field" placeholder="Enter your NID number">
-                </div>
-                <div class="form-group">
-                    <label for="nid-photo-front">NID Photo (Front)</label>
-                    <input type="file" id="nid-photo-front" accept="image/*">
-                    <p><br></p>
-                    <label for="nid-photo-back">NID Photo (Back)</label>
-                    <input type="file" id="nid-photo-back" accept="image/*">
-                </div>
-            </div>
-
-            <button class="continue-button" onclick="showStep2()">
-                Continue <span style="margin-left: 5px;">&#8594;</span>
-            </button>
-            
-            <p class="already-have-an-account-login">Already have an account?<a href="voLoginPage.html"><strong> Login</strong></a></p>
-        </div>
-
-        <div class="form-container" id="step2" style="display: none;">
-            <p class="signup">Signup</p> <!-- Retained "Signup" at the top in the second step -->
-            <p class="step-title">Vehicle Information</p> <!-- Added step title for the second step -->
-
-            <button class="back-button" onclick="showStep1()">
-                <span style="margin-right: 5px;">&#8592;</span> Back
-            </button>
-
-            <div class="form-group">
-                <label for="vehicle-photos">Vehicle Photos</label>
-                <input type="file" id="vehicle-photos" accept="image/*" multiple><p><br></p>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="vehicle-type">Vehicle Type</label>
-                    <input type="text" id="vehicle-type" class="input-field" placeholder="Enter vehicle type">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="name" for="name">Name</label>
+                        <input type="text" id="name" name="name" class="input-field" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label class="dob" for="dob">Date of Birth</label>
+                        <input type="date" id="dob" name="dob" class="input-field" placeholder="Enter your date of birth">
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="vehicle-model">Vehicle Model</label>
-                    <input type="text" id="vehicle-model" class="input-field" placeholder="Enter vehicle model">
+                    <label class="gender">Gender</label>
+                    <div class="radio-group">
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Female</label>
+                        <input type="radio" id="other" name="gender" value="other">
+                        <label for="other">Other</label>
+                    </div><p><br></p>
                 </div>
-            </div>
 
-            <div class="form-row">
                 <div class="form-group">
-                    <label for="vehicle-registration">Vehicle Registration No</label>
-                    <input type="text" id="vehicle-registration" class="input-field" placeholder="Enter vehicle registration no">
+                    <label class="licence" for="licence">Driving Licence No</label>
+                    <input type="text" id="licence" name="licence" class="input-field" placeholder="Enter your driving licence no">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="email" for="email">Email</label>
+                        <input type="email" id="email" name="email" class="input-field" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label class="phone" for="phone">Phone</label>
+                        <input type="text" id="phone" name="phone" class="input-field" placeholder="Enter your phone number">
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="vehicle-plate">Vehicle Plate No</label>
-                    <input type="text" id="vehicle-plate" class="input-field" placeholder="Enter vehicle plate no">
+                    <label class="mobile" for="mobile">Mobile</label>
+                    <input type="text" id="mobile" name="mobile" class="input-field" placeholder="Enter your mobile number">
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="vehicle-chassis">Vehicle Chassis No/VIN</label>
-                <input type="text" id="vehicle-chassis" class="input-field" placeholder="Enter vehicle chassis no">
-            </div>
-
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea id="description" class="input-field" rows="4" placeholder="Enter description"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label class="password" for="password">Password</label>
-                <div class="password-container">
-                    <input type="password" id="password" class="input-field" placeholder="Enter password">
-                    <span class="toggle-password" onclick="togglePasswordVisibility()">Show</span>
+                <div class="form-group">
+                    <label class="address" for="address">Home Address</label>
+                    <textarea id="address" name="address" class="input-field" rows="4" placeholder="Enter your home address"></textarea>
                 </div>
-            </div>
-            
-            <div class="form-group">
-                <label>
-                    <input type="checkbox" id="agree-terms">
-                    I agree to the Terms of Use and Privacy Policy
-                </label>
+
+                <div class="form-group">
+                    <label class="nid" for="nid">NID Info</label>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nid-no">NID No</label>
+                        <input type="text" id="nid" name="nid" class="input-field" placeholder="Enter your NID number">
+                    </div>
+                    <div class="form-group">
+                        <label for="nid-photo-front">NID Photo (Front)</label>
+                        <input type="file" id="nid-photo-front" name="nid-photo-front" accept="image/*">
+                        <p><br></p>
+                        <label for="nid-photo-back">NID Photo (Back)</label>
+                        <input type="file" id="nid-photo-back" name="nid-photo-back" accept="image/*">
+                    </div>
+                </div>
+
+                <button type="button" class="continue-button" onclick="showStep2()">
+                    Continue <span style="margin-left: 5px;">&#8594;</span>
+                </button>
+                
+                <p class="already-have-an-account-login">Already have an account?<a href="voLoginPage.php"><strong> Login</strong></a></p>
             </div>
 
-            <button class="signup-button">SIGNUP</button>
-            <p class="already-have-an-account-login">Already have an account?<a href="voLoginPage.html"><strong> Login</strong></a></p>
-        </div>
+            <div class="form-container" id="step2" style="display: none;">
+                <p class="signup">Signup</p>
+                <p class="step-title">Vehicle Information</p>
+
+                <button type="button" class="back-button" onclick="showStep1()">
+                    <span style="margin-right: 5px;">&#8592;</span> Back
+                </button>
+
+                <div class="form-group">
+                    <label for="vehicle-photos">Vehicle Photos</label>
+                    <input type="file" id="vehicle-photos" name="vehicle-photos[]" accept="image/*" multiple><p><br></p>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="vehicle-type">Vehicle Type</label>
+                        <input type="text" id="vehicle-type" name="vehicle-type" class="input-field" placeholder="Enter vehicle type">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vehicle-model">Vehicle Model</label>
+                        <input type="text" id="vehicle-model" name="vehicle-model" class="input-field" placeholder="Enter vehicle model">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="vehicle-registration">Vehicle Registration No</label>
+                        <input type="text" id="vehicle-registration" name="vehicle-registration" class="input-field" placeholder="Enter vehicle registration no">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vehicle-plate">Vehicle Plate No</label>
+                        <input type="text" id="vehicle-plate" name="vehicle-plate" class="input-field" placeholder="Enter vehicle plate no">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="vehicle-chassis">Vehicle Chassis No/VIN</label>
+                    <input type="text" id="vehicle-chassis" name="vehicle-chassis" class="input-field" placeholder="Enter vehicle chassis no">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" class="input-field" rows="4" placeholder="Enter description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="password" for="password">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" class="input-field" placeholder="Enter password">
+                        <span class="toggle-password" onclick="togglePasswordVisibility()">Show</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="agree-terms" name="agree-terms">
+                        I agree to the Terms of Use and Privacy Policy
+                    </label>
+                </div>
+
+                <button type="submit" class="signup-button">SIGNUP</button>
+                <p class="already-have-an-account-login">Already have an account?<a href="voLoginPage.php"><strong> Login</strong></a></p>
+            </div>
+        </form>
     </div>
 
     <script>
@@ -162,11 +164,11 @@
             if (passwordField.type === "password") {
                 passwordField.type = "text";
                 toggleButton.textContent = "Hide";
-                toggleButton.style.fontWeight = "bold"; // Bold when text is "Hide"
+                toggleButton.style.fontWeight = "bold";
             } else {
                 passwordField.type = "password";
                 toggleButton.textContent = "Show";
-                toggleButton.style.fontWeight = "bold"; // Bold when text is "Show"
+                toggleButton.style.fontWeight = "bold";
             }
         }
 
