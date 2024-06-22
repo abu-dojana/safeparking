@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="landlordLoginPage.css">
+    <title>Landlord Login</title>
+</head>
+<body>
+    <div class="login-page">
+        <img src="images/garage.jpg" alt="Background" class="background-image">
+        <div class="form-container">
+            <p class="login">Login</p>
+            
+            <label class="email-or-phone" for="email-or-phone">Email Address / Phone Number</label>
+            <input type="text" id="email-or-phone" class="input-field" placeholder="Enter email address or phone number">
+
+            <label class="password" for="password">Password</label>
+            <div class="password-container">
+                <input type="password" id="password" class="input-field" placeholder="Enter your password">
+                <span class="toggle-password" onclick="togglePasswordVisibility()">Show</span>
+            </div>
+            
+            <a href="#" class="forgot-password">Forgot password?</a>
+            <button class="login-button">LOGIN</button>
+            <p class="dont-have-an-account-sign-up">Don’t have an account?<a href="landlordSignupPage.html"><strong> Signup</strong></a></p>
+        </div>
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("password");
+            var toggleButton = document.querySelector(".toggle-password");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleButton.textContent = "Hide";
+                toggleButton.style.fontWeight = "bold"; // Bold when text is "Hide"
+            } else {
+                passwordField.type = "password";
+                toggleButton.textContent = "Show";
+                toggleButton.style.fontWeight = "bold"; // Bold when text is "Show"
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Landlord Signup</title>
+    <link rel="stylesheet" href="landlordSignupPage.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-SuztWZJuYDcRy3J5kNQ3p1uOtRJyBkwFIPYQ6QDn2ujTiluFWWkofVxKmeqRJ9A1+FT29sK6gJKX1e1bhJxX/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="signup-page">
+        <img src="images/garage.jpg" alt="Background" class="background-image">
+        <div class="form-container" id="step1">
+            <p class="signup">Signup</p>
+            <p class="step-title">Personal Info</p> <!-- Added step title for the first step -->
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="name" for="name">Name</label>
+                    <input type="text" id="name" class="input-field" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label class="dob" for="dob">Date of Birth</label>
+                    <input type="date" id="dob" class="input-field" placeholder="Enter your date of birth">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="gender">Gender</label>
+                <div class="radio-group">
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label>
+                    <input type="radio" id="other" name="gender" value="other">
+                    <label for="other">Other</label>
+                </div><p><br></p>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="email" for="email">Email</label>
+                    <input type="email" id="email" class="input-field" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label class="phone" for="phone">Phone</label>
+                    <input type="text" id="phone" class="input-field" placeholder="Enter your phone number">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="mobile" for="mobile">Mobile</label>
+                <input type="text" id="mobile" class="input-field" placeholder="Enter your mobile number">
+            </div>
+
+            <div class="form-group">
+                <label class="address" for="address">Address</label>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="building-no">Building No</label>
+                    <input type="text" id="building-no" class="input-field" placeholder="Building No">
+                </div>
+                <div class="form-group">
+                    <label for="street-no">Street No</label>
+                    <input type="text" id="street-no" class="input-field" placeholder="Street No">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="area-name">Area Name</label>
+                    <input type="text" id="area-name" class="input-field" placeholder="Area Name">
+                </div>
+                <div class="form-group">
+                    <label for="district">District</label>
+                    <input type="text" id="district" class="input-field" placeholder="District">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="post-code">Post Code</label>
+                    <input type="text" id="post-code" class="input-field" placeholder="Post Code">
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <input type="text" id="country" class="input-field" placeholder="Country">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="nid" for="nid">NID Info</label>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nid-no">NID No</label>
+                    <input type="text" id="nid" class="input-field" placeholder="Enter your NID number">
+                </div>
+                <div class="form-group">
+                    <label for="nid-photo-front">NID Photo (Front)</label>
+                    <input type="file" id="nid-photo-front" accept="image/*">
+                    <p><br></p>
+                    <label for="nid-photo-back">NID Photo (Back)</label>
+                    <input type="file" id="nid-photo-back" accept="image/*">
+                </div>
+            </div>
+
+
+            <button class="continue-button" onclick="showStep2()">
+                Continue <span style="margin-left: 5px;">&#8594;</span>
+            </button>
+            
+            <p class="already-have-an-account-login">Already have an account?<a href="landlordLoginPage.html"><strong> Login</strong></a></p>
+        </div>
+
+        <div class="form-container" id="step2" style="display: none;">
+            <p class="signup">Signup</p> <!-- Retained "Signup" at the top in the second step -->
+            <p class="step-title">Parking Space Information</p> <!-- Added step title for the second step -->
+
+            <button class="back-button" onclick="showStep1()">
+                <span style="margin-right: 5px;">&#8592;</span> Back
+            </button>
+
+            <div class="form-group">
+                <label for="parking-space-photos">Parking Space Photos</label>
+                <input type="file" id="parking-space-photos" accept="image/*" multiple><p><br></p>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="num-parking-spaces">Number of Parking Spaces</label>
+                    <input type="number" id="num-parking-spaces" class="input-field" placeholder="Enter number of parking spaces" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="expected-rent">Expected Rent</label>
+                    <input type="text" id="expected-rent" class="input-field" placeholder="Enter expected rent">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="security-features">Security Features</label>
+                <textarea id="security-features" class="input-field" rows="4" placeholder="Enter security features"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" class="input-field" rows="4" placeholder="Enter description"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="constraints">Constraints</label>
+                <textarea id="constraints" class="input-field" rows="4" placeholder="Enter constraints"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="password" for="password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" class="input-field" placeholder="Enter password">
+                    <span class="toggle-password" onclick="togglePasswordVisibility()">Show</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="agree-terms">
+                    I agree to the Terms of Use and Privacy Policy
+                </label>
+            </div>
+
+            <button class="signup-button">SIGNUP</button>
+            <p class="already-have-an-account-login">Already have an account?<a href="landlordLoginPage.html"><strong> Login</strong></a></p>
+        </div>
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("password");
+            var toggleButton = document.querySelector(".toggle-password");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleButton.textContent = "Hide";
+                toggleButton.style.fontWeight = "bold"; // Bold when text is "Hide"
+            } else {
+                passwordField.type = "password";
+                toggleButton.textContent = "Show";
+                toggleButton.style.fontWeight = "bold"; // Bold when text is "Show"
+            }
+        }
+
+        function showStep2() {
+            document.getElementById("step1").style.display = "none";
+            document.getElementById("step2").style.display = "block";
+        }
+
+        function showStep1() {
+            document.getElementById("step2").style.display = "none";
+            document.getElementById("step1").style.display = "block";
+        }
+    </script>
+</body>
+</html>
