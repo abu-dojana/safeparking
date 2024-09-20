@@ -1,0 +1,15 @@
+gmail: office.safeparking@gmail.com
+pass: CSE3100_Safeparking
+
+Find the Google map API here:
+https://console.cloud.google.com/apis/credentials?authuser=5&project=safeparkingmap
+
+api key: AIzaSyBxncGoC7yoh99_VAKELR7x_JpeJRfg52I
+
+
+Additional resources: 
+
+Png to base64:  https://www.base64-image.de/
+
+
+Youtube channel for future support- https://www.youtube.com/@Mapsters 

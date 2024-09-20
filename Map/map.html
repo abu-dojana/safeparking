@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Nearest Parking</title>
+    <link rel="stylesheet" href="map.css">
+ 
+</head>
+<body>
+
+    <div class="services">
+        <h1 class="service_h2">Find the best parking spot near you!</h1>
+
+        <!-- Search Form -->
+        <form class="search-form" id="searchForm">
+            <div class="form-row">
+                <label for="address">Search Address:</label>
+                <input type="text" id="address" name="address" placeholder="Enter address" required>
+            </div>
+
+            <div class="form-row">
+                <button type="submit" class="search-button">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="map"></div>
+
+    <!-- Loading Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgzLdi3JfZrjoN_pEgp20jmzc4dJoEQQY&libraries=places"></script>
+
+    <!-- Script to initialize the map and handle search -->
+    <script>
+      let map;
+      const places = {
+        "dhanmondi": { lat: 23.74651964446681, lng: 90.37448863575113 },
+        "hatirjheel": { lat: 23.7599779738407, lng: 90.41147657379486 },
+        "ramna park": { lat: 23.73783350751758, lng: 90.40167623342789 },
+        "banani": { lat: 23.79373425213519, lng: 90.39918239466776 },
+        "kalabagan": { lat: 23.749756104135457, lng: 90.3831696659318 },
+        "mirpur": { lat: 23.82235251668819, lng: 90.3654227986869 },
+        "uttara": { lat: 23.876318288658616, lng: 90.37863103053661 },
+        "khilgaon": { lat: 23.748093559086467, lng: 90.42933099398684 },
+        "mohammadpur": { lat: 23.766165003231418, lng: 90.35888134401694 },
+        "farmgate": { lat: 23.756111485111358, lng: 90.38719482051215 },
+        "karwan bazar": { lat: 23.751321704513554, lng: 90.39274865083932 },
+        "jigatola": { lat: 23.741269254506935, lng: 90.37306952189523 },
+        "katabon": { lat: 23.73694547753809, lng: 90.38726418884934 },
+        "rampura": { lat: 23.76122917265189, lng: 90.4207709891344 },
+        "banasree": { lat: 23.762201852499093, lng: 90.43296111297137 },
+      };
+
+      function initMap() {
+        const dhakaLocation = { lat: 23.8103, lng: 90.4125 };
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: dhakaLocation,
+          zoom: 15
+        });
+      }
+
+      // Initialize map when the API is loaded
+      initMap();
+
+      // Function to handle form submission and search address
+      document.getElementById('searchForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form from submitting traditionally
+        var address = document.getElementById('address').value.toLowerCase(); // Convert to lowercase
+        searchPlace(address);
+      });
+
+      // Function to search for the place by name
+      function searchPlace(name) {
+        const location = places[name];
+        if (location) {
+          // Recenter the map to the selected location
+          map.setCenter(location);
+
+          // Optionally place a marker at the location
+          new google.maps.Marker({
+            map: map,
+            position: location,
+            title: name
+          });
+        } else {
+          alert('Place not found in our database.');
+        }
+      }
+    </script>
+
+</body>
+</html>
