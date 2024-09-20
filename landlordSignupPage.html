@@ -3,27 +3,26 @@
 <head>
     <title>Landlord Signup</title>
     <link rel="stylesheet" href="landlordSignupPage.css">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-SuztWZJuYDcRy3J5kNQ3p1uOtRJyBkwFIPYQ6QDn2ujTiluFWWkofVxKmeqRJ9A1+FT29sK6gJKX1e1bhJxX/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="signup-page">
         <img src="images/garage.jpg" alt="Background" class="background-image">
+        <form id="signupForm" action="process_signup.php" method="post" enctype="multipart/form-data">
         <div class="form-container" id="step1">
             <p class="signup">Signup</p>
-            <p class="step-title">Personal Info</p> <!-- Added step title for the first step -->
-
+            <p class="step-title">Personal Info</p>
             <div class="form-row">
                 <div class="form-group">
                     <label class="name" for="name">Name</label>
-                    <input type="text" id="name" class="input-field" placeholder="Enter your name">
+                    <input type="hidden" name="form_type" value="garage_owner">
+                    <input type="text" id="name" name="name" class="input-field" placeholder="Enter your name">
                 </div>
                 <div class="form-group">
                     <label class="dob" for="dob">Date of Birth</label>
-                    <input type="date" id="dob" class="input-field" placeholder="Enter your date of birth">
+                    <input type="date" id="dob" name="dob" class="input-field" placeholder="Enter your date of birth">
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="gender">Gender</label>
                 <div class="radio-group">
@@ -35,169 +34,174 @@
                     <label for="other">Other</label>
                 </div><p><br></p>
             </div>
-
             <div class="form-row">
                 <div class="form-group">
                     <label class="email" for="email">Email</label>
-                    <input type="email" id="email" class="input-field" placeholder="Enter your email">
+                    <input type="email" id="email" name="email" class="input-field" placeholder="Enter your email">
                 </div>
                 <div class="form-group">
                     <label class="phone" for="phone">Phone</label>
-                    <input type="text" id="phone" class="input-field" placeholder="Enter your phone number">
+                    <input type="text" id="phone" name="phone" class="input-field" placeholder="Enter your phone number">
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="mobile" for="mobile">Mobile</label>
-                <input type="text" id="mobile" class="input-field" placeholder="Enter your mobile number">
+                <input type="text" id="mobile" name="mobile" class="input-field" placeholder="Enter your mobile number">
             </div>
-
             <div class="form-group">
                 <label class="address" for="address">Address</label>
             </div>
-
             <div class="form-row">
                 <div class="form-group">
                     <label for="building-no">Building No</label>
-                    <input type="text" id="building-no" class="input-field" placeholder="Building No">
+                    <input type="text" id="building-no" name="building_no" class="input-field" placeholder="Building No">
                 </div>
                 <div class="form-group">
                     <label for="street-no">Street No</label>
-                    <input type="text" id="street-no" class="input-field" placeholder="Street No">
+                    <input type="text" id="street-no" name="street_no" class="input-field" placeholder="Street No">
                 </div>
             </div>
-
             <div class="form-row">
                 <div class="form-group">
                     <label for="area-name">Area Name</label>
-                    <input type="text" id="area-name" class="input-field" placeholder="Area Name">
+                    <input type="text" id="area-name" name="area_name" class="input-field" placeholder="Area Name">
                 </div>
                 <div class="form-group">
                     <label for="district">District</label>
-                    <input type="text" id="district" class="input-field" placeholder="District">
+                    <input type="text" id="district" name="district" class="input-field" placeholder="District">
                 </div>
             </div>
-
             <div class="form-row">
                 <div class="form-group">
-                    <label for="post-code">Post Code</label>
-                    <input type="text" id="post-code" class="input-field" placeholder="Post Code">
+                    <label for="latitude">Latitude</label>
+                    <input type="text" id="latitude" name="latitude" class="input-field" placeholder="Latitude" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="country">Country</label>
-                    <input type="text" id="country" class="input-field" placeholder="Country">
+                    <label for="longitude">Longitude</label>
+                    <input type="text" id="longitude" name="longitude" class="input-field" placeholder="Longitude" readonly>
                 </div>
-            </div>
-
+                <div class="form-group">
+                    <button type="button" class="location-button" onclick="getLocation()">Get Current Location</button>
+                </div>
+            </div>            
             <div class="form-group">
                 <label class="nid" for="nid">NID Info</label>
             </div>
-
             <div class="form-row">
                 <div class="form-group">
                     <label for="nid-no">NID No</label>
-                    <input type="text" id="nid" class="input-field" placeholder="Enter your NID number">
+                    <input type="text" id="nid" name="nid_no" class="input-field" placeholder="Enter your NID number">
                 </div>
                 <div class="form-group">
                     <label for="nid-photo-front">NID Photo (Front)</label>
-                    <input type="file" id="nid-photo-front" accept="image/*">
+                    <input type="file" id="nid-photo-front" name="nid_photo_front" accept="image/*">
                     <p><br></p>
                     <label for="nid-photo-back">NID Photo (Back)</label>
-                    <input type="file" id="nid-photo-back" accept="image/*">
+                    <input type="file" id="nid-photo-back" name="nid_photo_back" accept="image/*">
                 </div>
             </div>
-
-
-            <button class="continue-button" onclick="showStep2()">
+            <button type="button" class="continue-button" onclick="showStep2()">
                 Continue <span style="margin-left: 5px;">&#8594;</span>
-            </button>
-            
-            <p class="already-have-an-account-login">Already have an account?<a href="landlordLoginPage.html"><strong> Login</strong></a></p>
+            </button>            
+            <p class="already-have-an-account-login">Already have an account?<a href="landlordLoginPage.php"><strong> Login</strong></a></p>
         </div>
-
         <div class="form-container" id="step2" style="display: none;">
-            <p class="signup">Signup</p> <!-- Retained "Signup" at the top in the second step -->
-            <p class="step-title">Parking Space Information</p> <!-- Added step title for the second step -->
-
-            <button class="back-button" onclick="showStep1()">
+            <p class="signup">Signup</p>
+            <p class="step-title">Parking Space Information</p>
+            <button type="button" class="back-button" onclick="showStep1()">
                 <span style="margin-right: 5px;">&#8592;</span> Back
             </button>
-
             <div class="form-group">
                 <label for="parking-space-photos">Parking Space Photos</label>
-                <input type="file" id="parking-space-photos" accept="image/*" multiple><p><br></p>
+                <input type="file" id="parking-space-photos" name="parking_space_photos[]" accept="image/*" multiple><p><br></p>
             </div>
-
             <div class="form-row">
                 <div class="form-group">
                     <label for="num-parking-spaces">Number of Parking Spaces</label>
-                    <input type="number" id="num-parking-spaces" class="input-field" placeholder="Enter number of parking spaces" min="0">
+                    <input type="number" id="num-parking-spaces" name="num_parking_spaces" class="input-field" placeholder="Enter number of parking spaces" min="0">
                 </div>
                 <div class="form-group">
                     <label for="expected-rent">Expected Rent</label>
-                    <input type="text" id="expected-rent" class="input-field" placeholder="Enter expected rent">
+                    <input type="text" id="expected-rent" name="expected_rent" class="input-field" placeholder="Enter expected rent">
                 </div>
             </div>
-
             <div class="form-group">
                 <label for="security-features">Security Features</label>
-                <textarea id="security-features" class="input-field" rows="4" placeholder="Enter security features"></textarea>
+                <textarea id="security-features" name="security_features" class="input-field" rows="4" placeholder="Enter security features"></textarea>
             </div>
-
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" class="input-field" rows="4" placeholder="Enter description"></textarea>
+                <textarea id="description" name="description" class="input-field" rows="4" placeholder="Enter description"></textarea>
             </div>
-
             <div class="form-group">
                 <label for="constraints">Constraints</label>
-                <textarea id="constraints" class="input-field" rows="4" placeholder="Enter constraints"></textarea>
+                <textarea id="constraints" name="constraints" class="input-field" rows="4" placeholder="Enter constraints"></textarea>
             </div>
-
             <div class="form-group">
                 <label class="password" for="password">Password</label>
                 <div class="password-container">
-                    <input type="password" id="password" class="input-field" placeholder="Enter password">
+                    <input type="password" id="password" name="password" class="input-field" placeholder="Enter password">
                     <span class="toggle-password" onclick="togglePasswordVisibility()">Show</span>
                 </div>
             </div>
-
             <div class="form-group">
                 <label>
-                    <input type="checkbox" id="agree-terms">
-                    I agree to the Terms of Use and Privacy Policy
+                    <input type="checkbox" id="terms" name="terms"> I agree to the <a href="#">Terms and Conditions</a>
                 </label>
             </div>
-
-            <button class="signup-button">SIGNUP</button>
-            <p class="already-have-an-account-login">Already have an account?<a href="landlordLoginPage.html"><strong> Login</strong></a></p>
+            <button type="submit" class="signup-button">Signup</button>
+            <p class="already-have-an-account-login">Already have an account?<a href="landlordLoginPage.php"><strong> Login</strong></a></p>
         </div>
+    </form>
     </div>
-
     <script>
-        function togglePasswordVisibility() {
-            var passwordField = document.getElementById("password");
-            var toggleButton = document.querySelector(".toggle-password");
-
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-                toggleButton.textContent = "Hide";
-                toggleButton.style.fontWeight = "bold"; // Bold when text is "Hide"
-            } else {
-                passwordField.type = "password";
-                toggleButton.textContent = "Show";
-                toggleButton.style.fontWeight = "bold"; // Bold when text is "Show"
-            }
-        }
-
         function showStep2() {
+            event.preventDefault(); // Prevent form submission when moving to step 2
             document.getElementById("step1").style.display = "none";
             document.getElementById("step2").style.display = "block";
         }
-
         function showStep1() {
+            event.preventDefault(); // Prevent form submission when moving to step 1
             document.getElementById("step2").style.display = "none";
             document.getElementById("step1").style.display = "block";
+        }
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("password");
+            var toggleButton = document.querySelector(".toggle-password");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                toggleButton.textContent = "Hide";
+            } else {
+                passwordInput.type = "password";
+                toggleButton.textContent = "Show";
+            }
+        }
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+        function showPosition(position) {
+            document.getElementById("latitude").value = position.coords.latitude;
+            document.getElementById("longitude").value = position.coords.longitude;
+        }
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
         }
     </script>
 </body>
