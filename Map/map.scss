@@ -1,60 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-
 * {
     margin: 0;
     border: 0;
     padding: 0;
     box-sizing: border-box;
   }
-  
   html {
     margin: 0;
     border: 0;
     padding: 0;
     scroll-behavior: smooth;
-   // color: rgb(255, 245, 231);
     background-color: rgb(0, 0, 0);
-    
   }
-  
   body {
     margin: 0;
     border: 0;
     padding: 0;
     font-family: "Montserrat_extra_light";
     font-family: "Inter", sans-serif;
-
-  }
-  
+  }  
   a {
     outline: none;
     text-decoration: none;
     color: red;
-  }
-  
+  }  
   img {
     width: 100%;
-  }
-  
+  }  
   ul {
     li {
       list-style: none;
     }
-  }
-  
+  }  
   ::selection {
     color: rgb(17, 9, 9);
     background: rgb(214, 214, 218);
   }
-  
   input:focus {
     outline: none;
   }
-
-
-
-  //map window resizer goes here
- 
   #map{
     width: 94%;
     height: 450px;
@@ -65,24 +49,15 @@
   #firstHeading{
     padding: 5px;
   }
-
-
-// service codes goes here
-
 .services {
     padding: 2rem;
     margin: 3rem;
     background-image: linear-gradient(rgb(94, 244, 247), rgba(8, 8, 8, 0.559)),url('/park.jpg');
     background-size: cover;
-    
-color: snow;
+    color: snow;
     .service_p {
         margin: 1rem 0rem;
         width:75%;
         text-align: justify;
     }
 }
-
-
-
- 
