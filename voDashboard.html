@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Account</title>
+    <link rel="stylesheet" href="voDashboard.css" />
+    <style>
+      .content-section#favorites .favorites-content {
+        text-align: center;
+      }
+      .content-section#favorites .favorites-content img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .update-button,
+      .submit-review-button,
+      .find-parking-button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .update-button:hover,
+      .submit-review-button:hover,
+      .find-parking-button:hover {
+        background-color: #45a049;
+      }
+    </style>
+    <script>
+      function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+          name: params.get("name"),
+          lat: params.get("lat"),
+          lng: params.get("lng"),
+          rate: params.get("rate"),
+          availability: params.get("availability"),
+          capacity: params.get("capacity"),
+          distance: params.get("distance"),
+          payment: params.get("payment"),
+          features: params.get("features"),
+        };
+      }
+      function populateBookingForm() {
+        const params = getQueryParams();
+        if (params.name) {
+          document.getElementById("parkingLocation").value = decodeURIComponent(
+            params.name
+          );
+          document.getElementById(
+            "coordinates"
+          ).value = `Lat: ${params.lat}, Lng: ${params.lng}`;
+          document.getElementById("rate").value = decodeURIComponent(
+            params.rate
+          );
+          document.getElementById("availability").value = decodeURIComponent(
+            params.availability
+          );
+          document.getElementById("capacity").value = decodeURIComponent(
+            params.capacity
+          );
+          document.getElementById("distance").value = decodeURIComponent(
+            params.distance
+          );
+          document.getElementById("payment").value = decodeURIComponent(
+            params.payment
+          );
+          document.getElementById("features").value = decodeURIComponent(
+            params.features
+          );
+        }
+      }
+      window.onload = populateBookingForm;
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <div class="logo">
+          <img src="assets/safe.png" alt="Safeparking" />
+        </div>
+        <button class="search-button" onclick="location.href='Map/map.html'">
+          Search for Parking
+        </button>
+      </div>
+    </header>
+    <div class="content">
+      <aside>
+        <div class="account-settings">
+          <h2>My Account</h2>
+          <ul class="menu-list">
+            <li class="menu-item active" data-section="profile">
+              <a href="#">Profile</a>
+            </li>
+            <li class="menu-item active" data-section="book-now-section">
+              <a href="#">Book Parking</a>
+            </li>
+            <li class="menu-item" data-section="payment-methods">
+              <a href="#">Payment Methods</a>
+            </li>
+            <li class="menu-item" data-section="vehicle">
+              <a href="#">Vehicle</a>
+            </li>
+            <li class="menu-item" data-section="subscription">
+              <a href="#">Subscription</a>
+            </li>
+            <li class="menu-item">
+              <span>Parking Sessions</span>
+              <ul class="submenu-list">
+                <li class="menu-item" data-section="current-parking">
+                  <a href="#">Current Parking</a>
+                </li>
+                <li class="menu-item" data-section="park-history">
+                  <a href="#">Park History</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item" data-section="favorites">
+              <a href="#">Favorites</a>
+            </li>
+            <li class="menu-item" data-section="reviews-ratings">
+              <a href="#">Reviews & Ratings</a>
+            </li>
+          </ul>
+        </div>
+        <div class="sign-out">
+          <a href="landingPage.html">Sign Out</a>
+        </div>
+      </aside>
+      <main>
+        <div id="profile" class="content-section">
+          <h2>Edit Profile</h2>
+          <form action="update_profile.php" method="post">
+            <div class="form-group">
+              <label for="email">Email Address*</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="user@gmail.com"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="first_name">First Name*</label>
+              <input
+                type="text"
+                id="first_name"
+                name="first_name"
+                placeholder="First name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="last_name">Last Name*</label>
+              <input
+                type="text"
+                id="last_name"
+                name="last_name"
+                placeholder="Last name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="mobile">Mobile Number*</label>
+              <div class="mobile-input">
+                <input
+                  type="text"
+                  id="mobile"
+                  name="mobile"
+                  placeholder="(+880)"
+                  required
+                />
+              </div>
+            </div>
+            <button type="submit" class="update-button">Update</button>
+          </form>
+        </div>
+        <div id="book-now-section" class="content-section" method="post" action="confirm_booking.php">
+          <h3>Book Parking</h3>
+          <form id="bookNowForm" class="booking-form">
+              <div class="form-group">
+                  <label for="parkingLocation">Parking Location:</label>
+                  <input type="text" id="parkingLocation" name="parkingLocation" readonly />
+              </div>
+              <div class="form-group">
+                  <label for="coordinates">Coordinates:</label>
+                  <input type="text" id="coordinates" name="coordinates" readonly />
+              </div>
+              <div class="form-group">
+                  <label for="rate">Hourly Rate:</label>
+                  <input type="text" id="rate" name="rate" value="10" readonly />
+              </div>
+              <div class="form-group">
+                  <label for="availability">Availability:</label>
+                  <input type="text" id="availability" name="availability" readonly />
+              </div>
+              <div class="form-group">
+                  <label for="capacity">Capacity:</label>
+                  <input type="text" id="capacity" name="capacity" readonly />
+              </div>
+              <div class="form-group">
+                  <label for="distance">Distance to Attraction:</label>
+                  <input type="text" id="distance" name="distance" readonly />
+              </div>
+              <div class="form-group">
+                  <label for="payment">Payment Methods:</label>
+                  <select id="payment" name="payment" required>
+                      <option value="" disabled selected>Select a payment method</option>
+                      <option value="credit_card">Credit Card</option>
+                      <option value="paypal">PayPal</option>
+                      <option value="bank_transfer">Bank Transfer</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="features">Special Features:</label>
+                  <input type="text" id="features" name="features" readonly />
+              </div>
+              <div class="form-group">
+                  <label for="hourlyRate">User-Defined Hourly Rate ($):</label>
+                  <input type="number" id="hourlyRate" name="hourlyRate" placeholder="Enter hourly rate" required />
+              </div>
+              <div class="form-group">
+                  <label for="hours">Number of Hours:</label>
+                  <input type="number" id="hours" name="hours" placeholder="Enter number of hours" required />
+              </div>
+<div class="form-group">
+  <label for="garageId">Garage ID:</label>
+  <input type="text" id="garageId" name="garageId" readonly />
+</div>
+<script>
+function getQueryParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+document.getElementById('garageId').value = getQueryParam('garageId');
+</script>
+              <button type="button" id="calculatePriceButton" class="btn">Calculate Total Price</button>
+    <div class="form-group">
+      <label>Total Price:</label>
+      <span id="totalPrice">$0</span>
+      <input type="hidden" id="totalPriceInput" name="totalPrice" />
+    </div>
+              <button type="button" id="confirmBookingButton" class="btn">Confirm Booking</button>
+          </form>
+      </div>
+      <script>
+        document.getElementById('confirmBookingButton').addEventListener('click', function() {
+            const garageId = document.getElementById('garageId').value;
+            const hours = document.getElementById('hours').value;
+            const paymentMethod = document.getElementById('payment').value;
+            if (!hours || !paymentMethod) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+            const form = document.getElementById('bookNowForm');
+            form.method = 'POST';
+            form.action = 'confirm_booking.php';
+            form.submit();
+        });
+        </script>
+        <div id="payment-methods" class="content-section" style="display: none">
+          <h2>Add Payment</h2>
+          <form action="add_payment.php" method="post" class="payment-form">
+            <div class="form-group">
+              <label for="credit_card">Credit Card*</label>
+              <input
+                type="text"
+                id="credit_card"
+                name="credit_card"
+                placeholder="•••• •••• •••• ••••"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="exp_date">Exp Date*</label>
+              <input
+                type="text"
+                id="exp_date"
+                name="exp_date"
+                placeholder="MM / YYYY"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="cvv">CVV*</label>
+              <input
+                type="text"
+                id="cvv"
+                name="cvv"
+                placeholder="•••"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="postal_code">Postal Code*</label>
+              <input
+                type="text"
+                id="postal_code"
+                name="postal_code"
+                placeholder="ex - 10001"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="nickname">Nickname</label>
+              <input
+                type="text"
+                id="nickname"
+                name="nickname"
+                placeholder="e.g., My Card"
+              />
+            </div>
+            <div class="form-group">
+              <label for="totalPricePayment">Total Price:</label>
+              <input
+                type="text"
+                id="totalPricePayment"
+                name="totalPricePayment"
+                readonly
+              />
+            </div>
+            <button type="submit" class="btn update-button">Pay Now</button>
+          </form>
+        </div>
+        <script>
+          document
+            .querySelector(".payment-form")
+            .addEventListener("submit", function (event) {
+              event.preventDefault();
+              alert("Payment was successful!");
+              window.location.href = "#current-parking"; 
+              document
+                .querySelector(
+                  '.submenu-list .menu-item[data-section="current-parking"] a'
+                )
+                .click();
+            });
+        </script>
+        <style>
+          .content-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+          }
+          .booking-form,
+          .payment-form {
+            display: flex;
+            flex-direction: column;
+          }
+          .form-group {
+            margin-bottom: 15px;
+          }
+          label {
+            margin-bottom: 5px;
+            font-weight: bold;
+          }
+          input[type="text"],
+          input[type="number"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+          }
+          .btn {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333333;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+          }
+          .btn:hover {
+            background-color: #0056b3;
+          }
+        </style>
+        <script>
+          document.getElementById('calculatePriceButton').addEventListener('click', function() {
+            const hourlyRate = parseFloat(document.getElementById('hourlyRate').value);
+            const hours = parseInt(document.getElementById('hours').value);
+            if (!isNaN(hourlyRate) && !isNaN(hours)) {
+              const totalPrice = hourlyRate * hours;
+              document.getElementById('totalPrice').textContent = '$' + totalPrice.toFixed(2);
+              document.getElementById('totalPriceInput').value = totalPrice.toFixed(2);
+            } else {
+              alert('Please enter valid values for hourly rate and hours.');
+            }
+          });
+          function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+          }
+          document.getElementById('garageId').value = getQueryParam('garageId');
+        </script>
+        <div id="vehicle" class="content-section">
+          <h2>Add Vehicle</h2>
+          <form action="add_vehicle.php" method="post">
+            <div class="form-group">
+              <label for="vehicle_make">Vehicle Make*</label>
+              <input
+                type="text"
+                id="vehicle_make"
+                name="vehicle_make"
+                placeholder="Make"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="vehicle_model">Vehicle Model*</label>
+              <input
+                type="text"
+                id="vehicle_model"
+                name="vehicle_model"
+                placeholder="Model"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="license_plate">License Plate*</label>
+              <input
+                type="text"
+                id="license_plate"
+                name="license_plate"
+                placeholder="License Plate"
+                required
+              />
+            </div>
+            <button type="submit" class="update-button">Add Vehicle</button>
+          </form>
+        </div>
+        <div id="subscription" class="content-section">
+          <h2>Subscription</h2>
+          <form action="subscribe.php" method="post">
+            <div class="form-group">
+              <label for="card-info">Card information</label>
+              <input
+                type="text"
+                id="card-info"
+                name="card-info"
+                placeholder="1234 1234 1234 1234"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="expiry">Expiry date</label>
+              <input
+                type="text"
+                id="expiry"
+                name="expiry"
+                placeholder="MM / YY"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="cvc">CVC</label>
+              <input
+                type="text"
+                id="cvc"
+                name="cvc"
+                placeholder="CVC"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="cardholder">Cardholder name</label>
+              <input
+                type="text"
+                id="cardholder"
+                name="cardholder"
+                placeholder="Full name on card"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="country">Country</label>
+              <select id="country" name="country" required>
+                <option value="Bangladesh">Bangladesh</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="address1">Address line 1</label>
+              <input type="text" id="address1" name="address1" required />
+            </div>
+            <div class="form-group">
+              <label for="address2">Address line 2</label>
+              <input type="text" id="address2" name="address2" />
+            </div>
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" id="city" name="city" required />
+            </div>
+            <div class="form-group">
+              <label for="postal">Postal code</label>
+              <input type="text" id="postal" name="postal" required />
+            </div>
+            <div class="form-group">
+              <label for="mobile">Mobile Number*</label>
+              <div class="mobile-input">
+                <input
+                  type="text"
+                  id="mobile"
+                  name="mobile"
+                  placeholder="(+880)"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group form-group-inline">
+              <label>
+                <input
+                  type="checkbox"
+                  id="agree-terms"
+                  name="agree-terms"
+                  required
+                />
+                I agree to the terms and conditions
+              </label>
+            </div>
+            <button type="submit" class="update-button">Subscribe</button>
+          </form>
+        </div>
+        <div id="current-parking" class="content-section">
+          <h2>Current Parking</h2>
+        </div>
+        <div id="park-history" class="content-section">
+          <h2>Park History</h2>
+        </div>
+        <div id="favorites" class="content-section">
+          <h2>My Favorites</h2>
+          <div class="favorites-content">
+            <p>Looks like you haven't marked your favorite garages yet!</p>
+            <img src="assets/favcar.png" alt="Car Picture" />
+            <p>Let's get you where you're going and...</p>
+            <button
+              type="button"
+              class="find-parking-button"
+              onclick="location.href='Map/map.html'">
+              Find parking
+            </button>
+          </div>
+        </div>
+        <div id="reviews-ratings" class="content-section">
+          <h2>Reviews & Ratings</h2>
+
+          <div class="reviews-container">
+            <h3>Your Reviews</h3>
+            <ul class="reviews-list">
+              <li class="review-item">
+                <strong>Parking Garage A</strong>
+                <div class="rating">
+                  <span>★★★★☆</span>
+                </div>
+                <p>
+                  "Great parking spot, very secure and convenient location."
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="review-form-container">
+            <h3>Submit a Review</h3>
+            <form action="submit_review.php" method="post">
+              <div class="form-group">
+                <label for="garage">Select Garage*</label>
+                <select id="garage" name="garage" required>
+                  <option value="Garage A">Garage A</option>
+                  <option value="Garage B">Garage B</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="rating">Rating*</label>
+                <select id="rating" name="rating" required>
+                  <option value="5">★★★★★</option>
+                  <option value="4">★★★★☆</option>
+                  <option value="3">★★★☆☆</option>
+                  <option value="2">★★☆☆☆</option>
+                  <option value="1">★☆☆☆☆</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="review">Review*</label>
+                <textarea
+                  id="review"
+                  name="review"
+                  rows="5"
+                  placeholder="Write your review here..."
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="submit-review-button">
+                Submit Review
+              </button>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".menu-item > a").on("click", function (e) {
+          e.preventDefault();
+          var $parentLi = $(this).parent();
+          if ($parentLi.hasClass("disabled")) {
+            return;
+          }
+          $(".menu-item").removeClass("active");
+          $parentLi.addClass("active");
+          var section = $parentLi.data("section");
+          $(".content-section").hide();
+          $("#" + section).show();
+        });
+        $(".submenu-list .menu-item > a").on("click", function (e) {
+          e.preventDefault();
+          var $parentLi = $(this).parent();
+          var section = $parentLi.data("section");
+          $(".menu-item").removeClass("active");
+          $parentLi.closest(".menu-item").addClass("active");
+          $(".content-section").hide();
+          $("#" + section).show();
+        });
+        $(".content-section").hide();
+        $("#book-now-section").show();
+      });
+    </script>
+  </body>
+  <script>
+    let parkingDetails = {
+        location: "",
+        coordinates: "",
+        rate: 0,
+        availability: "",
+        capacity: 0,
+        distance: "",
+        paymentMethod: "",
+        totalPrice: 0,
+    };
+    document.getElementById("confirmBookingButton").addEventListener("click", function() {
+        parkingDetails.location = document.getElementById("parkingLocation").value;
+        parkingDetails.coordinates = document.getElementById("coordinates").value;
+        parkingDetails.rate = document.getElementById("hourlyRate").value || 10;
+        parkingDetails.availability = document.getElementById("availability").value;
+        parkingDetails.capacity = document.getElementById("capacity").value;
+        parkingDetails.distance = document.getElementById("distance").value;
+        parkingDetails.paymentMethod = document.getElementById("payment").value;
+        parkingDetails.totalPrice = document.getElementById("totalPrice").innerText.replace('$', '');
+        document.querySelector(".payment-form #totalPricePayment").value = parkingDetails.totalPrice;
+        document.getElementById("payment-methods").style.display = "block";
+    });
+    document.querySelector(".payment-form").addEventListener("submit", function(event) {
+        event.preventDefault(); 
+        alert("Payment was successful!");
+        document.getElementById("current-parking").innerHTML = `
+            <h2>Current Parking</h2>
+            <p><strong>Location:</strong> ${parkingDetails.location}</p>
+            <p><strong>Coordinates:</strong> ${parkingDetails.coordinates}</p>
+            <p><strong>Hourly Rate:</strong> $${parkingDetails.rate}</p>
+            <p><strong>Availability:</strong> ${parkingDetails.availability}</p>
+            <p><strong>Capacity:</strong> ${parkingDetails.capacity}</p>
+            <p><strong>Distance to Attraction:</strong> ${parkingDetails.distance}</p>
+            <p><strong>Payment Method:</strong> ${parkingDetails.paymentMethod}</p>
+            <p><strong>Total Price:</strong> $${parkingDetails.totalPrice}</p>
+        `;
+        document.getElementById("current-parking").scrollIntoView();
+    });
+</script>
+</html>
