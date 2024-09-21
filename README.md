@@ -33,7 +33,6 @@ git clone https://github.com/abu-dojana/safeparking.git
 #### 2. Move the project to XAMPP's `htdocs` folder:
 Copy the cloned project folder to `C:/xampp/htdocs/safeparking` (or the equivalent path for XAMPP on your machine).
 
-
 #### 3. Start XAMPP:
 Launch XAMPP and start the **Apache** and **MySQL** modules.
 
