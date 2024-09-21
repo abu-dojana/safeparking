@@ -50,4 +50,4 @@ Open your browser and go to `http://localhost/safeparking` to view and interact 
 [Watch the Safeparking demo]()
 
 ## Project Report
-[View the full project report]()
+[View the full project report](https://drive.google.com/file/d/151EsQvD8Ua2CbICe-B4et3qhCkimgoNJ/view?usp=drive_link)
