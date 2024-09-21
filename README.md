@@ -26,4 +26,29 @@ Safeparking is a web-based application designed to solve the growing problem of 
 - Install [Visual Studio Code](https://code.visualstudio.com/download) or any other code editor of your choice.
 
 ### Steps
-1. **Clone the repository:**
+#### 1. Clone the repository:
+```bash
+git clone https://github.com/abu-dojana/safeparking.git
+```
+#### 2. Move the project to XAMPP's `htdocs` folder:
+Copy the cloned project folder to `C:/xampp/htdocs/safeparking` (or the equivalent path for XAMPP on your machine).
+
+
+#### 3. Start XAMPP:
+Launch XAMPP and start the Apache and MySQL modules.
+
+
+#### 4. Database Setup:
+- Open your browser and go to `http://localhost/phpmyadmin`.
+- Create a new database named `safeparking`.
+- Import the provided `.sql` file in the `db/` folder into this database.
+
+#### 5. Run the Application:
+Open your browser and go to `http://localhost/safeparking` to view and interact with the site.
+
+
+## Screencast
+[Watch the Safeparking demo]()
+
+## Project Report
+[View the full project report]()
