@@ -24,3 +24,6 @@ Safeparking is a web-based application designed to solve the growing problem of 
 ### Prerequisites
 - Download and install [XAMPP](https://www.apachefriends.org/download.html) for a local server environment.
 - Install [Visual Studio Code](https://code.visualstudio.com/download) or any other code editor of your choice.
+
+### Steps
+1. **Clone the repository:**
