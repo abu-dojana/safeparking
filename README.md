@@ -35,7 +35,7 @@ Copy the cloned project folder to `C:/xampp/htdocs/safeparking` (or the equivale
 
 
 #### 3. Start XAMPP:
-Launch XAMPP and start the Apache and MySQL modules.
+Launch XAMPP and start the **Apache** and **MySQL** modules.
 
 
 #### 4. Database Setup:
