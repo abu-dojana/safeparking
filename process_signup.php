@@ -2,11 +2,12 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "safeParking";
-$conn = new mysqli($servername, $username, $password);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+$dbname = "safeparking";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
+echo "Connected successfully<br>";
 $sql = "CREATE DATABASE IF NOT EXISTS $dbname";
 if ($conn->query($sql) === TRUE) {
     echo "Database created successfully or already exists<br>";
@@ -37,9 +38,9 @@ $sql = "CREATE TABLE IF NOT EXISTS vehicle_owners (
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
 if ($conn->query($sql) === TRUE) {
-    echo "Table created successfully or already exists<br>";
+    echo "Table vehicle_owners created successfully or already exists<br>";
 } else {
-    echo "Error creating table: " . $conn->error . "<br>";
+    echo "Error creating table vehicle_owners: " . $conn->error . "<br>";
 }
 $sql = "CREATE TABLE IF NOT EXISTS garage_owners (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -54,8 +55,8 @@ $sql = "CREATE TABLE IF NOT EXISTS garage_owners (
     street_no VARCHAR(50),
     area_name VARCHAR(50),
     district VARCHAR(50),
-    latitude float(50),
-    longitude float(50),
+    latitude FLOAT,
+    longitude FLOAT,
     nid_no VARCHAR(50),
     nid_photo_front VARCHAR(255),
     nid_photo_back VARCHAR(255),
@@ -69,14 +70,12 @@ $sql = "CREATE TABLE IF NOT EXISTS garage_owners (
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
 if ($conn->query($sql) === TRUE) {
-    echo "Garage owners table created successfully or already exists<br>";
+    echo "Table garage_owners created successfully or already exists<br>";
 } else {
-    echo "Error creating garage owners table: " . $conn->error . "<br>";
+    echo "Error creating table garage_owners: " . $conn->error . "<br>";
 }
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['form_type']) && $_POST['form_type'] == 'vehicle_owner') {
-        // Handle vehicle owner sign-up
         $name = $conn->real_escape_string($_POST['name'] ?? '');
         $dob = $conn->real_escape_string($_POST['dob'] ?? '');
         $gender = $conn->real_escape_string($_POST['gender'] ?? '');
@@ -106,7 +105,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     } elseif (isset($_POST['form_type']) && $_POST['form_type'] == 'garage_owner') {
-        // Handle garage owner sign-up
         $name = $conn->real_escape_string($_POST['name'] ?? '');
         $dob = $conn->real_escape_string($_POST['dob'] ?? '');
         $gender = $conn->real_escape_string($_POST['gender'] ?? '');
@@ -118,33 +116,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $street_no = $conn->real_escape_string($_POST['street_no'] ?? '');
         $area_name = $conn->real_escape_string($_POST['area_name'] ?? '');
         $district = $conn->real_escape_string($_POST['district'] ?? '');
-        $post_code = $conn->real_escape_string($_POST['post_code'] ?? '');
-        $country = $conn->real_escape_string($_POST['country'] ?? '');
-        $nid_no = $conn->real_escape_string($_POST['nid_no'] ?? '');
-        $nid_photo_front = uploadFile('nid_photo_front');
-        $nid_photo_back = uploadFile('nid_photo_back');
-        $parking_space_photos = uploadMultipleFiles('parking_space_photos');
+        $latitude = $conn->real_escape_string($_POST['latitude'] ?? 0);
+        $longitude = $conn->real_escape_string($_POST['longitude'] ?? 0);
+        $nid = $conn->real_escape_string($_POST['nid'] ?? '');
+        $password = isset($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : '';
+        $nid_photo_front = uploadFile('nid-photo-front');
+        $nid_photo_back = uploadFile('nid-photo-back');
+        $parking_space_photos = uploadMultipleFiles('parking-space-photos');
         $num_parking_spaces = $conn->real_escape_string($_POST['num_parking_spaces'] ?? 0);
         $expected_rent = $conn->real_escape_string($_POST['expected_rent'] ?? 0);
         $security_features = $conn->real_escape_string($_POST['security_features'] ?? '');
         $description = $conn->real_escape_string($_POST['description'] ?? '');
         $constraints = $conn->real_escape_string($_POST['constraints'] ?? '');
-        $password = isset($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : '';
-
-        $sql = "INSERT INTO garage_owners (name, dob, gender, email, phone, mobile, address, building_no, street_no, area_name, district, post_code, country, nid_no, nid_photo_front, nid_photo_back, parking_space_photos, num_parking_spaces, expected_rent, security_features, description, constraints, password)
-        VALUES ('$name', '$dob', '$gender', '$email', '$phone', '$mobile', '$address', '$building_no', '$street_no', '$area_name', '$district', '$post_code', '$country', '$nid_no', '$nid_photo_front', '$nid_photo_back', '$parking_space_photos', '$num_parking_spaces', '$expected_rent', '$security_features', '$description', '$constraints', '$password')";
+        $sql = "INSERT INTO garage_owners (name, dob, gender, email, phone, mobile, address, building_no, street_no, area_name, district, latitude, longitude, nid_no, nid_photo_front, nid_photo_back, parking_space_photos, num_parking_spaces, expected_rent, security_features, description, constraints, password)
+        VALUES ('$name', '$dob', '$gender', '$email', '$phone', '$mobile', '$address', '$building_no', '$street_no', '$area_name', '$district', '$latitude', '$longitude', '$nid', '$nid_photo_front', '$nid_photo_back', '$parking_space_photos', '$num_parking_spaces', '$expected_rent', '$security_features', '$description', '$constraints', '$password')";
         if ($conn->query($sql) === TRUE) {
             echo "New garage owner record created successfully";
             header("Location: landlordLoginPage.php");
             exit();
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
-            var_dump($_POST); 
-            var_dump($_FILES);
         }
     }
 }
-
 $conn->close();
 function uploadFile($inputName) {
     $targetDir = __DIR__ . "/uploads/";
@@ -165,16 +159,14 @@ function uploadMultipleFiles($inputName) {
         mkdir($targetDir, 0777, true);
     }  
     $uploadedFiles = [];
-    if (isset($_FILES[$inputName]['name'])) {
-        foreach ($_FILES[$inputName]['tmp_name'] as $key => $tmp_name) {
-            if ($_FILES[$inputName]['error'][$key] == 0) {
-                $targetFile = $targetDir . basename($_FILES[$inputName]["name"][$key]);
-                if (move_uploaded_file($tmp_name, $targetFile)) {
-                    $uploadedFiles[] = "uploads/" . basename($_FILES[$inputName]["name"][$key]);
-                }
+    if (isset($_FILES[$inputName])) {
+        foreach ($_FILES[$inputName]['tmp_name'] as $key => $tmpName) {
+            $targetFile = $targetDir . basename($_FILES[$inputName]["name"][$key]);
+            if (move_uploaded_file($tmpName, $targetFile)) {
+                $uploadedFiles[] = "uploads/" . basename($_FILES[$inputName]["name"][$key]);
             }
         }
     }
-    return implode(",", $uploadedFiles);
+    return json_encode($uploadedFiles);
 }
 ?>

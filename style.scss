@@ -1,14 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 @import "_fonts";
-
 * {
   margin: 0;
   border: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 html {
   margin: 0;
   border: 0;
@@ -17,70 +13,47 @@ html {
   color: rgb(255, 245, 231);
   background-color: black;
 }
-
 body {
   margin: 0;
   border: 0;
   padding: 0;
   font-family: "Montserrat_extra_light";
 }
-
 a {
   outline: none;
   text-decoration: none;
   color: red;
 }
-
 img {
   width: 100%;
 }
-
 ul {
   li {
     list-style: none;
   }
 }
-
 ::selection {
   color: rgb(17, 9, 9);
   background: rgb(214, 214, 218);
 }
-
 input:focus {
   outline: none;
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//Navigation Menu Codes
-
 .nav-menu {
   display: flex;
   justify-content: center;
   align-items: center;
-  // height: 100vh; /* Adjust height as needed */
-
-  // background-color: black;
-  //border-bottom: 1px solid snow;
-
   width: 100%;
   position: fixed;
-
   .nav-div {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-
   .nav-div img {
     width: 25%;
   }
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//Home Div Codes
-
 .home-div {
   margin-top: 1rem;
   height: 45vw;
@@ -104,15 +77,10 @@ input:focus {
   background-attachment: fixed;
   margin: 1rem;
   border: 1.5px solid rgba(169, 162, 162, 0.648);
-  // border: rgb(255, 255, 255) 0px 10px 6px, rgb(255, 255, 255) 0px 10px 6px;
-  // box-shadow: rgb(255, 255, 255) 10px 10px 16px, rgb(255, 255, 255) 0px 10px 10px;
-
   border-bottom: none;
   border-bottom-left-radius: 5px;
-
   border-bottom-right-radius: 5px;
   padding-bottom: 10rem;
-  // box-shadow: rgb(255, 255, 255) 10px 10px 16px, rgb(0, 0, 0) 0px 10px 10px;
   .home-nav {
     .home-grid-1 {
       color: snow;
@@ -121,15 +89,11 @@ input:focus {
       grid-column-gap: 25vw;
       margin-top: 1.5rem;
       text-align: center;
-      //  position: absolute;
       .item-1 {
-        //  padding: .5rem;
         background-color: transparent;
-
         a {
           color: snow;
           font-size: 1rem;
-
           font-family: "Lato", sans-serif;
           font-weight: 500;
           font-style: bold;
@@ -137,11 +101,9 @@ input:focus {
           border-bottom: 2px solid rgba(233, 237, 237, 0.762);
           padding-bottom: 5px;
         }
-
         a:hover {
           color: rgb(198, 44, 44);
           font-size: 1rem;
-
           font-family: "Lato", sans-serif;
           font-weight: 600;
           font-style: bold;
@@ -153,41 +115,32 @@ input:focus {
       }
     }
   }
-
   .home-text-div {
     padding-top: 12%;
     padding-left: 7.5%;
-
     .home-div-1 {
       .home-div-1-h {
         width: 25vw;
       }
-
       .home-div-1-h1 {
         font-family: "Lato", sans-serif;
         font-weight: 900;
         font-size: 4rem;
       }
-
       .home-div-1-h2 {
         font-family: "Lato", sans-serif;
         font-weight: 400;
         font-size: 2rem;
-
-        //       background: linear-gradient(90deg, rgba(207,176,190,1) 0%, rgba(207,92,21,1) 54%);
-
         padding: 0.1rem 0;
         margin: 0.5rem;
         margin-left: 0;
         color: rgb(207, 192, 231);
       }
-
       .home-div-1-h4 {
         text-align: justify;
         font-family: "Lato", sans-serif;
         font-weight: 100;
         padding-bottom: 2rem;
-
         font-family: "Roboto", sans-serif;
         font-weight: 100;
         font-optical-sizing: auto;
@@ -196,7 +149,6 @@ input:focus {
         width: 50%;
       }
     }
-
     .home-div-1-btn {
       .home-div-1-b {
         border-radius: 100px;
@@ -220,7 +172,6 @@ input:focus {
         }
       }
     }
-
     .home-div-1-b:hover {
       border-radius: 100px;
       padding: 0.5rem 2rem;
@@ -245,13 +196,8 @@ input:focus {
     }
   }
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/// Feature Section Codes
-
 .feature-section-div {
   margin-top: 8rem;
-
   .feature-img-caption {
     padding-left: 7.5%;
     font-size: 2rem;
@@ -264,7 +210,6 @@ input:focus {
     padding-bottom: 1rem;
     padding-right: 1vw;
   }
-
   .feature-section-div-grid {
     display: grid;
     grid-template-columns: repeat(3, 30vw);
@@ -272,7 +217,6 @@ input:focus {
     margin-top: 7.5rem;
     .feature-section-div-img {
       margin: 2rem;
-
       .feature-section-img {
         width: 100%;
         border-radius: 25px;
@@ -281,7 +225,6 @@ input:focus {
       .img-direction {
         margin-top: 25%;
       }
-
       .img-caption {
         font-family: "lato";
         text-align: center;
@@ -291,10 +234,6 @@ input:focus {
     }
   }
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/// User Section Codes
-
 .user-section-div {
   margin-top: 10rem;
   margin-bottom: 5rem;
@@ -303,19 +242,14 @@ input:focus {
   .user-section-grid {
     display: grid;
     grid-template-columns: 40% 70%;
-
     justify-items: center;
-
     .user-section-graphics-grid {
       transform: translateX(15%);
-
       .graphics {
         position: relative;
-        // width: 50%;
         width: 100%;
       }
     }
-
     .user-section-list-grid {
       .user-section-list-p {
         padding-left: inherit;
@@ -329,12 +263,10 @@ input:focus {
         .user-section-li {
           border: 1px solid grey;
           background-color: rgb(24, 22, 22);
-
           i {
             color: rgb(222, 76, 76);
             margin-right: 0.5rem;
           }
-
           font-family: "lato";
           font-weight: 700;
           font-size: 1.25rem;
@@ -346,10 +278,6 @@ input:focus {
     }
   }
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/// Subscription Section Codes
-
 .subscription-div {
   .subscription-grid {
     display: grid;
@@ -359,7 +287,6 @@ input:focus {
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     justify-items: center;
-
     .subscription-grid-text {
       background-color: rgb(38, 41, 40);
       padding: 4rem;
@@ -382,11 +309,9 @@ input:focus {
         text-align: justify;
       }
     }
-
     .subscription-grid-graphics {
       padding: 5rem;
       padding-top: 2rem;
-
       .pricing-header {
         .subscription-container {
           display: flex;
@@ -399,10 +324,8 @@ input:focus {
           border-radius: 5px;
           background-color: #f9f9f9;
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
           margin-top: 25px;
           margin-bottom: 25px;
-
           padding-top: 10px;
           .subscription-input {
             flex: 1;
@@ -412,31 +335,24 @@ input:focus {
             outline: none;
             font-size: 16px;
           }
-
-          /* Styling the button */
           .subscription-button {
             padding: 10px 20px;
             border: none;
-            background-color: red; /* Red color for the button */
+            background-color: red;
             color: white;
             font-size: 16px;
             border-radius: 0 5px 5px 0;
             cursor: pointer;
             transition: background-color 0.3s ease;
           }
-
           .subscription-button:hover {
-            background-color: darkred; /* Darker red on hover */
+            background-color: darkred;
           }
         }
       }
     }
   }
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/// Contact Section Codes
-
 .contact {
   padding: 5rem;
   background-color: rgb(22, 22, 23);
@@ -449,14 +365,12 @@ input:focus {
       padding-right: 2rem;
       border-right: 5px solid rgb(196, 70, 70);
     }
-
     .right {
       padding-left: 7.5rem;
 
       .contact-icon {
         rotate: -45deg;
       }
-
       .contact-grid-text {
         margin-left: 1rem;
       }
@@ -472,11 +386,9 @@ input:focus {
           color: #f48383;
         }
       }
-
       .contact-grid-text {
         color: rgb(231, 15, 73);
         color: #f48383;
-
         font-size: 1rem;
         padding-left: 0.25rem;
         font-family: poppins;
@@ -487,19 +399,14 @@ input:focus {
     }
   }
 }
-
-///Footer code starts here
-
 .footer {
   background: #222121;
   background-color: rgb(22, 22, 23);
   border-top: 1px solid rgb(74, 72, 72);
   padding: 30px 0px;
-  //  font-family: 'Play', sans-serif;
   font-family: Inter;
   text-align: center;
 }
-
 .footer .row {
   width: 100%;
   margin: 1% 0%;
@@ -507,48 +414,39 @@ input:focus {
   color: gray;
   font-size: 0.8em;
 }
-
 .footer .row a {
   text-decoration: none;
   color: gray;
   transition: 0.5s;
 }
-
 .footer .row a:hover {
   color: #fff;
 }
-
 .footer .row ul {
   width: 100%;
 }
-
 .footer .row ul li {
   display: inline-block;
   margin: 0px 30px;
 }
-
 .footer .row a i {
   font-size: 2em;
   margin: 0% 1%;
 }
-
 @media (max-width: 720px) {
   .footer {
     text-align: left;
     padding: 5%;
   }
-
   .footer .row ul li {
     display: block;
     margin: 10px 0px;
     text-align: left;
   }
-
   .footer .row a i {
     margin: 0% 3%;
   }
 }
-
 .footer-cont {
   font-family: lato;
 }
