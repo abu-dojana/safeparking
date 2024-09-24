@@ -47,7 +47,7 @@ Open your browser and go to `http://localhost/safeparking` to view and interact 
 
 
 ## Screencast
-[Watch the Safeparking demo]()
+[Watch the Safeparking demo](https://drive.google.com/file/d/1hT2LIC7A2x3mshwtx_sfoyTru-rqpcjU/view?usp=sharing)
 
 ## Project Report
 [View the full project report](https://drive.google.com/file/d/151EsQvD8Ua2CbICe-B4et3qhCkimgoNJ/view?usp=drive_link)
