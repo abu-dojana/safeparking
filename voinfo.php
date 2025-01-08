@@ -1,36 +1,23 @@
 <?php
 session_start();
-
-// Check if user is logged in
-// if (!isset($_SESSION['user_id'])) {
-//     header("Location: voLoginPage.php");
-//     exit();
-// }
-
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "vehicle_owner_db";
-
 $conn = new mysqli($servername, $username, $password, $dbname);
-
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
 $user_id = $_SESSION['user_id'];
 $sql = "SELECT * FROM vehicle_owners WHERE id = $user_id";
 $result = $conn->query($sql);
-
 if ($result->num_rows == 1) {
     $user_data = $result->fetch_assoc();
 } else {
     die("User not found");
 }
-
 $conn->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
