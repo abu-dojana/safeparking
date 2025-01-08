@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safeparking Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Safeparking Admin</h1>
+            <nav>
+                <a href="#" class="active">Dashboard</a>
+                <a href="#">Parking Slots</a>
+                <a href="#">Users</a>
+                <a href="#">Bookings</a>
+                <a href="#">Settings</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="dashboard">
+            <h2>Welcome, Admin!</h2>
+            <div class="summary-cards">
+                <div class="summary-card" id="total-slots-card">
+                    <h3>Total Parking Slots</h3>
+                    <p id="total-slots">Loading...</p>
+                </div>
+                <div class="summary-card" id="total-users-card">
+                    <h3>Total Users</h3>
+                    <p id="total-users">Loading...</p>
+                </div>
+                <div class="summary-card" id="bookings-today-card">
+                    <h3>Bookings Today</h3>
+                    <p id="bookings-today">Loading...</p>
+                </div>
+            </div>
+            <div class="data-section">
+                <div class="recent-activities">
+                    <h2>Recent Activities</h2>
+                    <ul id="activity-list">
+                        <!-- Activities will be dynamically added here -->
+                    </ul>
+                </div>
+                <div class="data-lists">
+                    <div class="data-list">
+                        <h2>Users</h2>
+                        <ul id="user-list">
+                            <!-- Users will be dynamically added here -->
+                        </ul>
+                    </div>
+                    <div class="data-list">
+                        <h2>Parking Slots</h2>
+                        <ul id="parking-slot-list">
+                            <!-- Parking slots will be dynamically added here -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        // admin.js
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardData();
+        });
+
+        function loadDashboardData() {
+            fetch('admin_data.php')
+                .then(response => response.json())
+                .then(data => {
+                    updateSummaryCards(data);
+                    updateRecentActivities(data.recentActivities);
+                    updateUserList(data.recentUsers);
+                    updateParkingSlotList(data.recentParkingSlots);
+                })
+                .catch(error => {
+                    console.error('Error fetching admin data:', error);
+                    showErrorMessage('Failed to load dashboard data. Please try again later.');
+                });
+        }
+
+        function updateSummaryCards(data) {
+            document.getElementById('total-slots').textContent = data.totalParkingSlots;
+            document.getElementById('total-users').textContent = data.totalUsers;
+            document.getElementById('bookings-today').textContent = data.bookingsToday;
+        }
+
+        function updateRecentActivities(activities) {
+            const activityList = document.getElementById('activity-list');
+            activityList.innerHTML = '';
+            activities.forEach(activity => {
+                const li = document.createElement('li');
+                li.textContent = activity;
+                activityList.appendChild(li);
+            });
+        }
+
+        function updateUserList(users) {
+            const userList = document.getElementById('user-list');
+            userList.innerHTML = '';
+            users.forEach(user => {
+                const li = document.createElement('li');
+                li.textContent = user;
+                userList.appendChild(li);
+            });
+        }
+
+        function updateParkingSlotList(slots) {
+            const parkingSlotList = document.getElementById('parking-slot-list');
+            parkingSlotList.innerHTML = '';
+            slots.forEach(slot => {
+                const li = document.createElement('li');
+                li.textContent = slot;
+                parkingSlotList.appendChild(li);
+            });
+        }
+
+        function showErrorMessage(message) {
+            const dashboard = document.querySelector('.dashboard');
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = message;
+            dashboard.insertBefore(errorDiv, dashboard.firstChild);
+        }
+    </script>
+</body>
+</html>

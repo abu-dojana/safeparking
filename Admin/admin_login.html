@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../landlordLoginPage.css">
+    <title>Admin Login</title>
+</head>
+<body style="background-color: black">
+    <div class="login-page">
+        <div class="form-container">
+            <p class="login">Admin Login</p>            
+            <label class="username" for="username">Username</label>
+            <input type="text" id="username" class="input-field" placeholder="Enter username">
+
+            <label class="password" for="password">Password</label>
+            <div class="password-container">
+                <input type="password" id="password" class="input-field" placeholder="Enter your password">
+                <span class="toggle-password" onclick="togglePasswordVisibility()">Show</span>
+            </div>           
+            <button class="login-button" onclick="validateLogin()">LOGIN</button>
+            <p id="error-message" style="color: red; display: none;">Wrong credentials</p>
+        </div>
+    </div>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("password");
+            var toggleButton = document.querySelector(".toggle-password");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleButton.textContent = "Hide";
+                toggleButton.style.fontWeight = "bold";
+            } else {
+                passwordField.type = "password";
+                toggleButton.textContent = "Show";
+                toggleButton.style.fontWeight = "bold";
+            }
+        }
+
+        function validateLogin() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var errorMessage = document.getElementById("error-message");
+
+            if (username === "safepark_admin" && password === "admin") {
+                window.location.href = "admin.html";
+            } else {
+                errorMessage.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
